@@ -1,5 +1,7 @@
 import pandas as pd
 import xml.etree.ElementTree as ET
+import csv
+
 
 # Function to parse the XML and extract relevant data
 def parse_xml(file_path):
@@ -54,7 +56,13 @@ def parse_xml(file_path):
 file_path = 'datafiles/vysledky_okres.xml'
 df_okres, df_obec = parse_xml(file_path)
 
-df_obec.to_csv('datafiles/volby_obce.csv')
-df_obec.to_csv('datafiles/volby_okres.csv')
+df_obec.to_csv('datafiles/volby_obce.csv', sep=";", index=False, encoding='utf-8')
+df_okres.to_csv('datafiles/volby_okres.csv', sep=";", index=False, encoding='utf-8')
 
-df = pd.read_csv('datafiles/ciselnik_obci.csv', encoding='latin1')
+
+datafile = pd.read_excel('datafiles/ciselnik_strany.xlsx')
+
+datafile.to_csv('datafiles/ciselnik_strany.csv', sep=";", index=False)
+
+
+df = pd.read_csv('datafiles/ciselnik_obci.csv', encoding='utf-8')
