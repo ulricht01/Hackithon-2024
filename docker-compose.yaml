@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  flask:
+    build: .
+    container_name: flask_hackithon
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./code:/code
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mmariadb_hackithon
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      TZ: Europe/Prague
+    volumes:
+      - ./data:/var/lib/myslq
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: 'Phpmyadmin_hackithon'
+    depends_on:
+      - mariadb
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    ports:
+      - '8000:80'
