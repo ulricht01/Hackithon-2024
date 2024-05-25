@@ -6,6 +6,32 @@
 	height: 95vh;
 }
 .grid-container {
+
     display: grid;
-    column-gap: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+#graph1 {
+grid-column: 1 / span 3;
+}
+
+#graph2 {
+grid-column: 2 / 1;
+}
+
+#graph3 {
+grid-column: 2 / 2;
+}
+
+#graph4 {
+grid-column: 3 / 3;
+}
+
+.graph {
+border: 1px solid black;
+padding: 20px;
+text-align: center;
 }
