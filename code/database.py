@@ -98,6 +98,21 @@ def vytvor_tabulky():
                     zkratka_strany VARCHAR(20)
                 );
                     """)
+    
+    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS souradnice_mesta_ok (
+                    obec VARCHAR(255),
+                    kod_obce INT,
+                    okres VARCHAR(255),
+                    kod_okresu VARCHAR(255),
+                    kraj VARCHAR(255),
+                    kod_kraje VARCHAR(255),
+                    psc INT,
+                    latitude FLOAT,
+                    longitude FLOAT
+                );
+
+                    """)
     conn.commit()
 
 
@@ -119,23 +134,17 @@ def top_5_strany():
                     SELECT 
     cis_str.nazev_strany, 
     cis_str.zkratka_strany,
-    obc.hlasy
+    sum(obc.hlasy)
         FROM 
             (SELECT 
-                DISTINCT kstrana, 
-                NAZ_OBEC, 
-                TYP_OBEC, 
-                SUM(hlasy) AS hlasy 
+                DISTINCT kstrana,
+                hlasy
             FROM 
-                volby_obce 
-            WHERE 
-                TYP_OBEC != "MCMO" 
-            GROUP BY 
-                kstrana, NAZ_OBEC, TYP_OBEC) AS obc
+                volby_okres) AS obc
         LEFT JOIN 
             ciselnik_strany cis_str ON (obc.kstrana = cis_str.id)
         GROUP BY 
-            1, 2, 3
+            1, 2
         ORDER BY 
             3 DESC
         LIMIT 5""")
@@ -233,12 +242,21 @@ def vydane_vs_ztracene_hlasy():
     conn.close()
     return data
 
-
-
+def data_pro_mapu():
+    conn, cursor = napoj_do_db()
+    cursor.execute("""
+                    SELECT latitude, longitude, hlasy
+                    FROM souradnice_mesta_ok 
+                    INNER JOIN (SELECT cis_obec, hlasy
+                    FROM volby_obce WHERE typ_obec != ('OBEC_S_MCMO')) as vol
+""")
+    data = cursor.fetchall()
+    return data
 #vytvor_tabulky()
 #nahraj_data('datafiles/ciselnik_obci.csv', ";")
 #nahraj_data('datafiles/volby_obce.csv', ";")
 #nahraj_data('datafiles/volby_okres.csv', ";")
 #nahraj_data('datafiles/ciselnik_strany.csv', ";")
-
+#vytvor_tabulky()
+#nahraj_data('datafiles/souradnice_mesta_ok.csv', ";")
 

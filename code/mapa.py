@@ -1,13 +1,14 @@
-import streamlit as st
-import folium
-from streamlit_folium import st_folium
+import pandas as pd
+import unicodedata
 
-# Vytvoření základní mapy České republiky
-m = folium.Map(location=[49.8175, 15.4730], zoom_start=7)
+# Načtení dat
+file = pd.read_csv('datafiles/souradnice_mesta.csv', encoding='utf-8')
 
-# Případné přidání markerů
-folium.Marker([50.0755, 14.4378], popup='Praha').add_to(m)
-folium.Marker([49.1951, 16.6068], popup='Brno').add_to(m)
+# Změna názvů sloupců na bez mezer a diakritiky
+new_columns = {column: unicodedata.normalize('NFKD', column).encode('ascii', 'ignore').decode('utf-8').replace(' ', '_').lower() for column in file.columns}
+file = file.rename(columns=new_columns)
 
-# Vykreslení mapy pomocí st_folium
-st_folium(m, width=700, height=500)
+# Výpis DataFrame s novými názvy sloupců
+print(file.head())
+
+file.to_csv('datafiles/souradnice_mesta_ok.csv', sep=";", index=False)

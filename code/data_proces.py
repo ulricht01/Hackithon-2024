@@ -1,6 +1,20 @@
 import pandas as pd
 import xml.etree.ElementTree as ET
 import csv
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+file = pd.read_csv('datafiles/voleni_zavislost.csv', sep=";")
+correlation = file['vek_volenych'].corr(file['pocet_hlasu'])
+correlation_2 = file['pohlavi_volenych'].corr(file['pocet_hlasu'])
+print(correlation_2)
+sns.scatterplot(data=file, x='pocet_hlasu', y='vek_volenych')
+sns.lmplot(x='vek_volenych', y='pocet_hlasu', data=file)
+sns.lmplot(x='pohlavi_volenych', y='pocet_hlasu', data=file)
+sns.lmplot(x='strana' ,y='pocet_hlasu', data=file)
+plt.show()
 
 
 # Function to parse the XML and extract relevant data
@@ -53,16 +67,18 @@ def parse_xml(file_path):
     return df_okres, df_obec
 
 # Parse the XML file and get DataFrames
-file_path = 'datafiles/vysledky_okres.xml'
-df_okres, df_obec = parse_xml(file_path)
+#file_path = 'datafiles/vysledky_okres.xml'
+#df_okres, df_obec = parse_xml(file_path)
 
-df_obec.to_csv('datafiles/volby_obce.csv', sep=";", index=False, encoding='utf-8')
-df_okres.to_csv('datafiles/volby_okres.csv', sep=";", index=False, encoding='utf-8')
-
-
-datafile = pd.read_excel('datafiles/ciselnik_strany.xlsx')
-
-datafile.to_csv('datafiles/ciselnik_strany.csv', sep=";", index=False)
+#df_obec.to_csv('datafiles/volby_obce.csv', sep=";", index=False, encoding='utf-8')
+#df_okres.to_csv('datafiles/volby_okres.csv', sep=";", index=False, encoding='utf-8')
 
 
-df = pd.read_csv('datafiles/ciselnik_obci.csv', encoding='utf-8')
+#datafile = pd.read_excel('datafiles/ciselnik_strany.xlsx')
+
+#datafile.to_csv('datafiles/ciselnik_strany.csv', sep=";", index=False)
+
+
+#df = pd.read_csv('datafiles/ciselnik_obci.csv', encoding='utf-8')
+
+

@@ -7,12 +7,6 @@ WORKDIR /code
 RUN apk update && \
     apk add --no-cache mariadb-connector-c-dev build-base
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    software-properties-common \
-    git \
-    && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file and install dependencies
 COPY requirements.txt /code/
@@ -29,10 +23,7 @@ ENV DB_PASSWORD=123
 ENV DB_NAME=hackithon_2024
 ENV TZ=Europe/Prague
 
-EXPOSE 8501
-
 # Spusťte aplikaci Streamli
 
 # Define the command to run the application
 CMD ["python", "app.py"]
-ENTRYPOINT ["streamlit", "run", "mapa.py", "--server.port=8501", "--server.address=0.0.0.0"]

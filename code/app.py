@@ -10,6 +10,7 @@ app = Flask(__name__)
 #database.nahraj_data('datafiles/volby_obce.csv', ";")
 #database.nahraj_data('datafiles/volby_okres.csv', ";")
 #database.nahraj_data('datafiles/ciselnik_strany.csv', ";")
+#database.nahraj_data('datafiles/souradnice_mesta_ok.csv', ";")
 
 @app.route('/')
 def index():
@@ -87,7 +88,6 @@ def vydane_vs_ztracene_hlasy():
         "data": [row[1] for row in data]    
     }
     return jsonify(response)
-
 
 @app.route('/volby_4')
 def volby_4():
