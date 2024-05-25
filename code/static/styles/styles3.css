@@ -28,6 +28,11 @@
     width: 80%;
     align-items: center;
 }
+.graph:hover {
+    background-color: #e5e5e5; 
+    transition: 0.3s;    
+    border-radius: 25px;
+}
 
 #graph1 {
     grid-row: 5;

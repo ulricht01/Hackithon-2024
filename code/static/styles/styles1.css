@@ -7,3 +7,12 @@
 	align-items: center;
 	height: 95vh;
 }
+.graph {
+	padding: 20px;
+    text-align: center;
+}
+.graph:hover {
+    background-color: #e5e5e5; 
+    transition: 0.3s;
+	border-radius: 25px;
+}

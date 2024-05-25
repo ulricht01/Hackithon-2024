@@ -20,15 +20,16 @@
 
     <div class="shadow">
         <div class="grid-container">
-            <div class="graph" id="graph1">
+            <div class="graph" id="graph1", onclick = "location.href='/top_prc_ucast_data';">
+                
                 <canvas id="myChart2" width="400" height="200"></canvas>
                 <script src="./static/scripts/top_prc_ucast.js"></script>
             </div>
-            <div class="graph" id="graph2">
+            <div class="graph" id="graph2", onclick = "location.href='min_prc_ucast_data';">
                 <canvas id="myChart3" width="400" height="200"></canvas>
                 <script src="./static/scripts/min_prc_ucast.js"></script>
             </div>
-            <div class="graph" id="graph3">
+            <div class="graph" id="graph3", onclick = "location.href='/obec_bez_vs_s_mcmo_data';">
                 <canvas id="myChart4" width="400" height="200"></canvas>
                 <script src="static/scripts/obec_bez_vs_s_mco.js"></script>
             </div>

@@ -1,4 +1,4 @@
-fetch(endpoint).then(response => response.json()).then(data => {
+fetch('/top_prc_ucast_data').then(response => response.json()).then(data => {
     const labels = data.labels;
     const zaznamy = data.data;
 
