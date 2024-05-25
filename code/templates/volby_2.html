@@ -17,17 +17,26 @@
         {% include "navigace.html" %}
     </header>
 
-    <div class="container">
+    <div class="shadow">
         <div class="grid-container">
-            <div class="graph" id="graph1">Graph 1
-                <canvas id="myChart2" width="400" height="200"></canvas>
+            <div class="graph" id="graph1">
+                <canvas id="myChart" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
             </div>
-            <div class="graph" id="graph2">Graph 2</div>
-            <div class="graph" id="graph3">Graph 3</div>
-            <div class="graph" id="graph4">Graph 4</div>
+            <div class="graph" id="graph2">
+                <canvas id="myChart2" width="400" height="200"></canvas>
+                <script src="./static/min_prc_ucast.js"></script>
+            </div>
+            <div class="graph" id="graph3">
+                <canvas id="myChart3" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
+            <div class="graph" id="graph4">
+                <canvas id="myChart4" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
         </div>
     </div>
-    <script src="./static/min_prc_ucast.js"></script>
 </body>
 
 

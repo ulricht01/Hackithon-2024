@@ -7,6 +7,7 @@
     <meta name="author" content="Tomáš Ulrich">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title> Volby 4 </title>
 </head>
 
@@ -16,6 +17,26 @@
         {% include "navigace.html" %}
     </header>
 
+    <div class="shadow">
+        <div class="grid-container">
+            <div class="graph" id="graph1">
+                <canvas id="myChart" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
+            <div class="graph" id="graph2">
+                <canvas id="myChart1" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
+            <div class="graph" id="graph3">
+                <canvas id="myChart2" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
+            <div class="graph" id="graph4">
+                <canvas id="myChart3" width="400" height="200"></canvas>
+                <script src="static/volby_1.js"></script>
+            </div>
+        </div>
+    </div>
 </body>
 
 
