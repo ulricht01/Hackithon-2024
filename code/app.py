@@ -48,8 +48,8 @@ def top_prc_ucast_data():
     data = database.top_prc_ucast()
     # Převést data do formátu vhodného pro JSON
     response = {
-        "labels": [row[0] for row in data],  # názvy obcí
-        "data": [row[1] for row in data]     # účast
+        "labels": [row[0] for row in data], 
+        "data": [row[1] for row in data]     
     }
     return jsonify(response)
 
@@ -59,14 +59,25 @@ def obec_bez_vs_s_mcmo():
     data = database.obec_bez_vs_s_mcmo()
     # Převést data do formátu vhodného pro JSON
     response = {
-        "labels": [row[0] for row in data],  # Typy obcí
-        "data": [row[1] for row in data]     # Počty hlasů
+        "labels": [row[0] for row in data],  
+        "data": [row[1] for row in data]     
     }
     return jsonify(response)
 
 @app.route('/volby_3')
 def volby_3():
     return render_template('volby_3.html')
+
+@app.route('/platne_vs_odevzdane_hlasy_data')
+def platne_vs_odevzdane_hlasy():
+    data = database.platne_vs_odevzdane_hlasy()
+    # Převést data do formátu vhodného pro JSON
+    response = {
+        "labels": [row[0] for row in data], 
+        "data": [row[1] for row in data]    
+    }
+    return jsonify(response)
+
 
 @app.route('/volby_4')
 def volby_4():
