@@ -34,7 +34,7 @@ fetch('/min_prc_ucast_data').then(response => response.json()).then(data => {
                 },
                 title: {
                     display: true,
-                    text: '5 Nejmenších volebních účastí',
+                    text: '5 Nejnižších volebních účastí',
                     font: {
                         size: 18
                     }
