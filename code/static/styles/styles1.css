@@ -1,3 +1,9 @@
 .v1 {
     width: 140vh;
 }
+.centrum {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 95vh;
+}
