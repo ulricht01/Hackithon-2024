@@ -6,7 +6,8 @@
     <meta name="keywords" content="Volby, analýza, grafy">
     <meta name="author" content="Tomáš Ulrich">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/styles/styles4.css">
+    <link rel="stylesheet" href="static/styles/common.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title> Volby 4 </title>
 </head>
@@ -20,8 +21,9 @@
     <div class="shadow">
         <div class="grid-container">
             <div class="graph" id="graph1">
-                <canvas id="myChart" width="400" height="200"></canvas>
-                <script src="static/volby_1.js"></script>
+                <div class="map-container">
+                    <iframe src="http://localhost:8501" width="700" height="500" style="border:none;"></iframe>
+                </div>
             </div>
             <div class="graph" id="graph2">
                 <canvas id="myChart1" width="400" height="200"></canvas>

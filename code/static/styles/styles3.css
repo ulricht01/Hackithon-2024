@@ -1,0 +1,51 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleDiv {
+    font-size: 24px;
+    grid-column: 1 / span 2;
+    /* Roztáhnout na celý řádek */
+    text-align: center;
+    /* Zarovnání do středu */
+}
+
+.valueContainer {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+}
+
+.graph {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    align-items: center;
+}
+
+#graph1 {
+    grid-row: 5;
+    grid-column: 1;
+}
+
+#graph2 {
+    grid-row: 5;
+    grid-column: 2;
+}
+.name {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.value {
+    font-size: 20px;
+    /* Velikost čísel */
+    margin-top: 5px;
+    /* Oddělení čísla od obdélníku */
+}

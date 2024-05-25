@@ -32,3 +32,10 @@ services:
       - PMA_HOST=mariadb
     ports:
       - '8000:80'
+
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./code:/code

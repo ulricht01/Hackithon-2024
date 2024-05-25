@@ -1,11 +1,11 @@
-fetch('/min_prc_ucast_data').then(response => response.json()).then(data => {
+fetch('/top_prc_ucast_data').then(response => response.json()).then(data => {
     const labels = data.labels;
     const zaznamy = data.data;
 
     // Vytvoření grafu pomocí Chart.js
-    const ctx = document.getElementById('myChart2').getContext('2d');
+    const ctx = document.getElementById('myChart3').getContext('2d');
     new Chart(ctx, {
-        type: 'pie',
+        type: 'bar', // Změna typu grafu na sloupcový
         data: {
             labels: labels,
             datasets: [{
@@ -32,15 +32,18 @@ fetch('/min_prc_ucast_data').then(response => response.json()).then(data => {
         },
         options: {
             scales: {
+                y: {
+                    beginAtZero: true
+                }
             },
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'left'
+                    display: false,
+                    position: 'right'
                 },
                 title: {
                     display: true,
-                    text: '5 Nejmenších volebních účástí',
+                    text: '5 Největších volebních účástí',
                     font: {
                         size: 18
                     }

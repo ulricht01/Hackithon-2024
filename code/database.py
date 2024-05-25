@@ -174,7 +174,7 @@ def min_prc_ucast():
 def top_prc_ucast():
     conn, cursor = napoj_do_db()
     cursor.execute("""
-                    SELECT  naz_obec, 
+                    SELECT  distinct naz_obec, 
                             ucast_proc
                     FROM volby_obce obc
                     ORDER BY 2 Desc
@@ -220,6 +220,19 @@ def platne_vs_odevzdane_hlasy():
     data = cursor.fetchall()
     conn.close()
     return data
+
+def vydane_vs_ztracene_hlasy():
+    conn, cursor = napoj_do_db()
+    cursor.execute("""
+                    SELECT  typ_obec,
+                            sum(vydane_obalky-odevzdane_obalky) as rozdil
+                    FROM (SELECT DISTINCT NAZ_OBEC, TYP_OBEC, vydane_obalky, odevzdane_obalky FROM `volby_obce` WHERE TYP_OBEC != "MCMO") as xxx
+                    group by 1
+                    """)
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
 
 
 #vytvor_tabulky()
