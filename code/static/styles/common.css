@@ -1,0 +1,33 @@
+.container { /* centers div */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 95vh;
+}
+
+.shadow {
+    border-radius: 25px;
+    border: 2px solid whitesmoke;
+    background-color: #f4f4f4;
+}
+
+.topbar {
+    display: inline-flex; 
+    justify-content: space-around;
+    align-items: center; 
+    background-color: #fafafa;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.topbar a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 20px;
+}
+
+.topbar a:hover {
+    background-color: #f0f0f0; 
+}
