@@ -1,10 +1,17 @@
 import requests
 import json
+import pandas as pd
+import os
+
 def fetch_expenditure_data(url):
     response = requests.get(url)
     data = response.json()
     return data
-
+def get_parties(url):
+    response = requests.get(url)
+    data = response.json()
+    return data
+# Fetch the main JSON data
 data = requests.get('https://zpravy.udhpsh.cz/zpravy/k2020.json').json()
 
 # Initialize a dictionary to store the expenditure data for each party
@@ -21,8 +28,24 @@ for party in data["parties"]:
             except Exception as e:
                 expenditure_data[party_name] = f"Error fetching data: {e}"
 
-# Print the expenditure data for each party
+parties = {}
+
+# Normalize and concatenate all expenditure data into a single DataFrame
+all_dataframes = []
+
 for party, data in expenditure_data.items():
-    print(f"Expenditure data for {party}:")
-    print(json.dumps(data, indent=4, ensure_ascii=False))
-    print("\n")
+    if isinstance(data, list):  # Ensure the data is a list of dictionaries
+        df = pd.json_normalize(data)
+        df['party'] = party  # Add a column for the party name
+        all_dataframes.append(df)
+    else:
+        print(f"Skipping data for {party} due to error: {data}")
+
+# Concatenate all DataFrames into one
+if all_dataframes:
+    final_df = pd.concat(all_dataframes, ignore_index=True)
+    print(final_df)
+else:
+    print("No valid data to concatenate.")
+
+final_df.to_csv('code/datafiles/expenditure_data.csv', sep=";", index=False)
