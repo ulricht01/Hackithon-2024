@@ -46,7 +46,7 @@ fetch('/vydane_vs_ztracene_hlasy_data')
                         }
                     },
                     legend: {
-                        position: 'right'
+                        position: 'top'
                     }
                 }
             }

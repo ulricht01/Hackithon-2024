@@ -46,7 +46,7 @@ fetch('/platne_vs_odevzdane_hlasy_data')
                         }
                     },
                     legend: {
-                        position: 'right'
+                        position: 'top'
                     }
                 }
             }
