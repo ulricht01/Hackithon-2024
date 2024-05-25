@@ -45,7 +45,7 @@ def min_prc_ucast_data():
 
 @app.route('/top_prc_ucast_data')
 def top_prc_ucast_data():
-    data = database.min_prc_ucast()
+    data = database.top_prc_ucast()
     # Převést data do formátu vhodného pro JSON
     response = {
         "labels": [row[0] for row in data],  # názvy obcí
@@ -53,6 +53,16 @@ def top_prc_ucast_data():
     }
     return jsonify(response)
 
+
+@app.route('/obec_bez_vs_s_mcmo_data')
+def obec_bez_vs_s_mcmo():
+    data = database.obec_bez_vs_s_mcmo()
+    # Převést data do formátu vhodného pro JSON
+    response = {
+        "labels": [row[0] for row in data],  # Typy obcí
+        "data": [row[1] for row in data]     # Počty hlasů
+    }
+    return jsonify(response)
 
 @app.route('/volby_3')
 def volby_3():

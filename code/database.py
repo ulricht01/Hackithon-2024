@@ -174,7 +174,7 @@ def min_prc_ucast():
 def top_prc_ucast():
     conn, cursor = napoj_do_db()
     cursor.execute("""
-                    SELECT  naz_obec, 
+                    SELECT  distinct naz_obec, 
                             ucast_proc
                     FROM volby_obce obc
                     ORDER BY 2 Desc
