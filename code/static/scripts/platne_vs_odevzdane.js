@@ -33,7 +33,15 @@ fetch('/platne_vs_odevzdane_hlasy_data')
                 labels: customNames,
                 datasets: [{
                     data: values,
-                    backgroundColor: colors
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
                 }]
             },
             options: {

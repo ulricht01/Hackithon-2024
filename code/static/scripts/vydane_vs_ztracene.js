@@ -32,8 +32,17 @@ fetch('/vydane_vs_ztracene_hlasy_data')
             data: {
                 labels: customNames,
                 datasets: [{
+                    label: 'Počty hlasů',
                     data: values,
-                    backgroundColor: colors
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
                 }]
             },
             options: {

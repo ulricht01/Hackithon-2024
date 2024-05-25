@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="static/styles/styles2.css">
     <link rel="stylesheet" href="static/styles/common.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <title> Volby 2 </title>
 </head>
 <!-- Jedná so stránku vykreslující 3 grafy, jeden bar a jeden pie, s tím že se ukazuje obce kde bylo nejnižší volební účast a poté nejvyšší, dále na tom pie se zobrazí rozdíl mezi vesnicí a městem -->
@@ -22,7 +21,6 @@
     <div class="shadow">
         <div class="grid-container">
             <div class="graph" id="graph1", onclick = "location.href='/top_prc_ucast_data';">
-                
                 <canvas id="myChart2" width="400" height="200"></canvas>
                 <script src="./static/scripts/top_prc_ucast.js"></script>
             </div>
@@ -30,7 +28,7 @@
                 <canvas id="myChart3" width="400" height="200"></canvas>
                 <script src="./static/scripts/min_prc_ucast.js"></script>
             </div>
-            <div class="graph" id="graph3", onclick = "location.href='/obec_bez_vs_s_mcmo_data';">
+            <div class="graph" id="graph3", onclick = "location.href='/top_prc_ucast_data';">
                 <canvas id="myChart4" width="400" height="200"></canvas>
                 <script src="static/scripts/obec_bez_vs_s_mco.js"></script>
             </div>
