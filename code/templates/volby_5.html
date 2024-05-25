@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Analýza voleb">
+    <meta name="keywords" content="Volby, analýza, grafy">
+    <meta name="author" content="Tomáš Ulrich">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles/styles5.css">
+    <link rel="stylesheet" href="static/styles/common.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <title> Volby 5 </title>
+</head>
+<!-- Jedná so stránku vykreslující 3 grafy, jeden bar a jeden pie, s tím že se ukazuje obce kde bylo nejnižší volební účast a poté nejvyšší, dále na tom pie se zobrazí rozdíl mezi vesnicí a městem -->
+<body>
+    <header>
+        {% include "navigace.html" %}
+    </header>
+
+    <div class="shadow">
+        <div class="grid-container">
+            <div class="graph" id="graph1", onclick = "location.href='/top_prc_ucast_data';">
+                
+            </div>
+            <div class="graph" id="graph2", onclick = "location.href='/min_prc_ucast_data';">
+                
+            </div>
+            <div class="graph" id="graph3", onclick = "location.href='/top_prc_ucast_data';">
+                
+            </div>
+            <div class="graph" id="graph3", onclick = "location.href='/top_prc_ucast_data';">
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+</html>
