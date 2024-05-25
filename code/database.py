@@ -245,12 +245,14 @@ def vydane_vs_ztracene_hlasy():
 def data_pro_mapu():
     conn, cursor = napoj_do_db()
     cursor.execute("""
-                    SELECT latitude, longitude, hlasy
-                    FROM souradnice_mesta_ok 
-                    INNER JOIN (SELECT cis_obec, hlasy
-                    FROM volby_obce WHERE typ_obec != ('OBEC_S_MCMO')) as vol
+                    SELECT latitude, longitude, sum(hlasy) as hlasy
+                    FROM souradnice_mesta_ok smo
+                    inner JOIN (SELECT cis_obec, hlasy
+                    FROM volby_obce WHERE typ_obec != ('MCMO')) as vol on (vol.cis_obec = smo.kod_obce)
+                   GROUP BY 1,2
 """)
     data = cursor.fetchall()
+    conn.commit()
     return data
 #vytvor_tabulky()
 #nahraj_data('datafiles/ciselnik_obci.csv', ";")

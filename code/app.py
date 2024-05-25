@@ -93,6 +93,17 @@ def vydane_vs_ztracene_hlasy():
 def volby_4():
     return render_template('volby_4.html')
 
+@app.route('/data_pro_mapu')
+def data_pro_mapu():
+    data = database.data_pro_mapu()
+    # Převést data do formátu vhodného pro JSON
+    response = {
+        "latitude": [row[0] for row in data],
+        "longitude": [row[1] for row in data],
+        "hlasy": [row[2] for row in data]
+    }
+    return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
