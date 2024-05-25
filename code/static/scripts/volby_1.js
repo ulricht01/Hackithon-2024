@@ -58,7 +58,6 @@ fetch('/volby_1_data')
                     }
                 }
             },
-            // Include the ChartDataLabels plugin
             plugins: [ChartDataLabels]
         });
     })
