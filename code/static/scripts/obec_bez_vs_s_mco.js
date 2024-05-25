@@ -37,9 +37,18 @@ fetch('/obec_bez_vs_s_mcmo_data')
                         font: {
                             size: 18
                         }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: (value) => value, // formátování popisků
+                        font: {
+                            weight: 'bold'
+                        }
                     }
                 }
-            }
+            },
+            plugins: [ChartDataLabels] // přidání pluginu do grafu
         });
     })
     .catch(error => {

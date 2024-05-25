@@ -47,9 +47,19 @@ fetch('/volby_1_data')
                         font: {
                             size: 18
                         }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: (value) => value, // formátování popisků
+                        font: {
+                            weight: 'bold'
+                        }
                     }
                 }
-            }
+            },
+            // Include the ChartDataLabels plugin
+            plugins: [ChartDataLabels]
         });
     })
     .catch(error => {
