@@ -221,6 +221,19 @@ def platne_vs_odevzdane_hlasy():
     conn.close()
     return data
 
+def vydane_vs_ztracene_hlasy():
+    conn, cursor = napoj_do_db()
+    cursor.execute("""
+                    SELECT  typ_obec,
+                            sum(vydane_obalky-odevzdane_obalky) as rozdil
+                    FROM (SELECT DISTINCT NAZ_OBEC, TYP_OBEC, vydane_obalky, odevzdane_obalky FROM `volby_obce` WHERE TYP_OBEC != "MCMO") as xxx
+                    group by 1
+                    """)
+    data = cursor.fetchall()
+    conn.close()
+    return data
+
+
 
 #vytvor_tabulky()
 #nahraj_data('datafiles/ciselnik_obci.csv', ";")
