@@ -5,8 +5,8 @@ def vytvor_db():
     config = {
         'user': 'root',
         'password': '123',
-        #'host': 'mariadb',
-        'host': 'localhost',
+        'host': 'mariadb',
+        #'host': 'localhost',
         'port': 3306
     }
     conn = mariadb.connect(**config)
@@ -21,7 +21,8 @@ def napoj_do_db():
     config = {
         'user': 'root',
         'password': '123',
-        'host': 'localhost',
+        #'host': 'localhost',
+        'host': 'mariadb',
         'port': 3306,
         'database': 'hackithon_2024',
         'local_infile': True,
@@ -117,10 +118,9 @@ def top_5_strany():
     cursor.execute("""
                     SELECT  cis_str.nazev_strany, 
                             cis_str.zkratka_strany,
-                            sum(obc.hlasy) as Celkem_hlasu
-                    FROM volby_obce obc
+                            hlasy as Celkem_hlasu
+                    FROM (SELECT DISTINCT kstrana, NAZ_OBEC, TYP_OBEC, sum(hlasy) as hlasy FROM `volby_obce` WHERE TYP_OBEC != "MCMO" group by 1,2,3) as obc
                     LEFT JOIN ciselnik_strany cis_str on (obc.kstrana = cis_str.id)
-                    WHERE typ_obec != "OBEC_S_MCMO"
                     GROUP BY 1,2
                     ORDER BY 3 Desc
                     LIMIT 5""")

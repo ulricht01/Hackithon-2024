@@ -1,22 +1,29 @@
-from flask import Flask, url_for, render_template, redirect, request, flash
+from flask import Flask, url_for, render_template, redirect, request, flash, jsonify
 import mariadb
 import database
 
 app = Flask(__name__)
 
-config = {
-        'user': 'root',
-        'password': '123',
-        'host': 'mariadb',
-        #'host': 'localhost',
-        'port': 3306,
-        'database': 'hackithon_2024'
-    }
-
+database.vytvor_db()
+database.vytvor_tabulky()
+database.nahraj_data('datafiles/ciselnik_obci.csv', ";")
+database.nahraj_data('datafiles/volby_obce.csv', ";")
+database.nahraj_data('datafiles/volby_okres.csv', ";")
+database.nahraj_data('datafiles/ciselnik_strany.csv', ";")
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/volby_1_data')
+def volby_1_data():
+    data = database.top_5_strany()
+    # Převést data do formátu vhodného pro JSON
+    response = {
+        "labels": [row[0] for row in data],  # názvy stran
+        "data": [row[2] for row in data]     # Celkem_hlasu
+    }
+    return jsonify(response)
 
 @app.route('/volby_1')
 def volby_1():

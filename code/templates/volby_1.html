@@ -7,6 +7,7 @@
     <meta name="author" content="Tomáš Ulrich">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title> Volby 1 </title>
 </head>
 
@@ -15,6 +16,13 @@
     <header>
         {% include "navigace.html" %}
     </header>
+
+    <h1>Top 5 Stran dle Počtu Hlasů</h1>
+    <!-- Plátno pro graf -->
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <!-- Zahrnutí externího JavaScriptového souboru -->
+    <script src="./static/volby_1.js"></script>
 
 </body>
 
