@@ -47,9 +47,20 @@ fetch('/platne_vs_odevzdane_hlasy_data')
                     },
                     legend: {
                         position: 'top'
+                    },
+                    datalabels:{
+                        datalabels:{
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (values) => values, // formátování popisků
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
                     }
                 }
-            }
+            },
+            plugins: [ChartDataLabels] // přidání pluginu do grafu
         });
     })
     .catch(error => {

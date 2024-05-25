@@ -39,11 +39,13 @@ fetch('/obec_bez_vs_s_mcmo_data')
                         }
                     },
                     datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        formatter: (value) => value, // formátování popisků
-                        font: {
-                            weight: 'bold'
+                            datalabels:{
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (values) => values, // formátování popisků
+                            font: {
+                                weight: 'bold'
+                            }
                         }
                     }
                 }
