@@ -6,15 +6,24 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+import pandas as pd
+import statsmodels.api as sm
+
+# Načtení dat
 file = pd.read_csv('datafiles/voleni_zavislost.csv', sep=";")
-correlation = file['vek_volenych'].corr(file['pocet_hlasu'])
-correlation_2 = file['pohlavi_volenych'].corr(file['pocet_hlasu'])
-print(correlation_2)
-sns.scatterplot(data=file, x='pocet_hlasu', y='vek_volenych')
-sns.lmplot(x='vek_volenych', y='pocet_hlasu', data=file)
-sns.lmplot(x='pohlavi_volenych', y='pocet_hlasu', data=file)
-sns.lmplot(x='strana' ,y='pocet_hlasu', data=file)
-plt.show()
+
+# Definice nezávislé a závislé proměnné
+X = file['vek_volenych']  # Věk volených
+y = file['pocet_hlasu']   # Počet hlasů
+
+# Přidání konstanty pro konstantní člen v modelu
+X = sm.add_constant(X)
+
+# Vytvoření modelu a provedení regrese
+model = sm.OLS(y, X).fit()
+
+# Výpis výsledků regrese
+print(model.summary())
 
 
 # Function to parse the XML and extract relevant data
@@ -81,4 +90,19 @@ def parse_xml(file_path):
 
 #df = pd.read_csv('datafiles/ciselnik_obci.csv', encoding='utf-8')
 
+
+#import pandas as pd
+#import unicodedata
+
+# Načtení dat
+#file = pd.read_csv('datafiles/souradnice_mesta.csv', encoding='utf-8')
+
+# Změna názvů sloupců na bez mezer a diakritiky
+#new_columns = {column: unicodedata.normalize('NFKD', column).encode('ascii', 'ignore').decode('utf-8').replace(' ', '_').lower() for column in file.columns}
+#file = file.rename(columns=new_columns)
+
+# Výpis DataFrame s novými názvy sloupců
+#print(file.head())
+
+#file.to_csv('datafiles/souradnice_mesta_ok.csv', sep=";", index=False)
 

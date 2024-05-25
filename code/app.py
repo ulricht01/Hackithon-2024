@@ -1,7 +1,9 @@
-from flask import Flask, url_for, render_template, redirect, request, flash, jsonify
+from flask import Flask, url_for, render_template, redirect, request, flash, jsonify, render_template_string
 import mariadb
 import database
-
+import folium
+from folium.plugins import HeatMap
+import numpy as np
 app = Flask(__name__)
 
 #database.vytvor_db()
@@ -91,18 +93,31 @@ def vydane_vs_ztracene_hlasy():
 
 @app.route('/volby_4')
 def volby_4():
-    return render_template('volby_4.html')
+    data = data_pro_mapu()
+    
+    # Vytvoření mapy pomocí folium
+    m = folium.Map(location=[50.6612, 14.0532], zoom_start=11)  # Centrum ČR
+    
+    for row in data:
+        folium.Marker(
+            location=[row[0], row[1]],
+            popup=(row[2]),
+        ).add_to(m)
+
+    
+
+    folium.GeoJson('datafiles/UstiNadLabem.geojson', name='Ústecký kraj').add_to(m)
+    
+    # Uložení mapy do HTML
+    map_html = m._repr_html_()
+    # Zobrazení mapy v šabloně
+    return render_template('volby_4.html', map_html=map_html)
 
 @app.route('/data_pro_mapu')
 def data_pro_mapu():
     data = database.data_pro_mapu()
     # Převést data do formátu vhodného pro JSON
-    response = {
-        "latitude": [row[0] for row in data],
-        "longitude": [row[1] for row in data],
-        "hlasy": [row[2] for row in data]
-    }
-    return jsonify(response)
+    return data
 
 
 if __name__ == '__main__':
