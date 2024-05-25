@@ -116,14 +116,29 @@ def nahraj_data(datafile, sep):
 def top_5_strany():
     conn, cursor = napoj_do_db()
     cursor.execute("""
-                    SELECT  cis_str.nazev_strany, 
-                            cis_str.zkratka_strany,
-                            hlasy as Celkem_hlasu
-                    FROM (SELECT DISTINCT kstrana, NAZ_OBEC, TYP_OBEC, sum(hlasy) as hlasy FROM `volby_obce` WHERE TYP_OBEC != "MCMO" group by 1,2,3) as obc
-                    LEFT JOIN ciselnik_strany cis_str on (obc.kstrana = cis_str.id)
-                    GROUP BY 1,2
-                    ORDER BY 3 Desc
-                    LIMIT 5""")
+                    SELECT 
+    cis_str.nazev_strany, 
+    cis_str.zkratka_strany,
+    obc.hlasy
+        FROM 
+            (SELECT 
+                DISTINCT kstrana, 
+                NAZ_OBEC, 
+                TYP_OBEC, 
+                SUM(hlasy) AS hlasy 
+            FROM 
+                volby_obce 
+            WHERE 
+                TYP_OBEC != "MCMO" 
+            GROUP BY 
+                kstrana, NAZ_OBEC, TYP_OBEC) AS obc
+        LEFT JOIN 
+            ciselnik_strany cis_str ON (obc.kstrana = cis_str.id)
+        GROUP BY 
+            1, 2, 3
+        ORDER BY 
+            3 DESC
+        LIMIT 5""")
     data = cursor.fetchall()
     conn.close()
     return data
@@ -147,11 +162,11 @@ def bottom_5_strany():
 def min_prc_ucast():
     conn, cursor = napoj_do_db()
     cursor.execute("""
-                    SELECT  naz_obec, 
+                    SELECT  distinct naz_obec, 
                             ucast_proc
                     FROM volby_obce obc
                     ORDER BY 2 Asc
-                    LIMIT 1""")
+                    LIMIT 5""")
     data = cursor.fetchall()
     conn.close()
     return data

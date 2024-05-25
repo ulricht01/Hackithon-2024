@@ -38,7 +38,7 @@ fetch('/volby_1_data')
                 },
                 plugins: {
                     legend: {
-                        display: true,
+                        display: false,
                         position: 'top'
                     },
                     title: {
