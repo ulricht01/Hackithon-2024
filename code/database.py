@@ -178,7 +178,7 @@ def top_prc_ucast():
                             ucast_proc
                     FROM volby_obce obc
                     ORDER BY 2 Desc
-                    LIMIT 1""")
+                    LIMIT 5""")
     data = cursor.fetchall()
     conn.close()
     return data
