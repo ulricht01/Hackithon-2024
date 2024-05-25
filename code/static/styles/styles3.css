@@ -1,0 +1,46 @@
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.titleDiv {
+    font-size: 24px;
+    grid-column: 1 / span 2;
+    /* Roztáhnout na celý řádek */
+    text-align: center;
+    /* Zarovnání do středu */
+}
+
+.valueContainer {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.graph {
+    grid-column: 1 / span 2;
+    /* Roztáhnout na celý řádek */
+    text-align: center;
+    /* Zarovnání do středu */
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.value {
+    font-size: 24px;
+    /* Velikost čísel */
+    margin-top: 10px;
+    /* Oddělení čísla od obdélníku */
+}
