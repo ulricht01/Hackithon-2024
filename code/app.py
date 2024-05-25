@@ -78,6 +78,16 @@ def platne_vs_odevzdane_hlasy():
     }
     return jsonify(response)
 
+@app.route('/vydane_vs_ztracene_hlasy_data')
+def vydane_vs_ztracene_hlasy():
+    data = database.vydane_vs_ztracene_hlasy()
+    # Převést data do formátu vhodného pro JSON
+    response = {
+        "labels": [row[0] for row in data], 
+        "data": [row[1] for row in data]    
+    }
+    return jsonify(response)
+
 
 @app.route('/volby_4')
 def volby_4():

@@ -1,4 +1,4 @@
-fetch('/platne_vs_odevzdane_hlasy_data')
+fetch('/vydane_vs_ztracene_hlasy_data')
     .then(response => response.json())
     .then(data => {
         const values = data.data;
@@ -6,19 +6,19 @@ fetch('/platne_vs_odevzdane_hlasy_data')
         // Vlastní názvy
         const customNames = ["Obce mimo ÚnL", "Ústí nad Labem"];
 
-        document.getElementById('titleName').textContent = ['Neplatné hlasy']
+        document.getElementById('titleName2').textContent = ['Ztracené hlasy']
         // Nastavení názvů a hodnot do obdélníků
-        document.getElementById('name1').textContent = customNames[0];
-        document.getElementById('value1').textContent = values[0];
-        document.getElementById('name2').textContent = customNames[1];
-        document.getElementById('value2').textContent = values[1];
+        document.getElementById('name3').textContent = customNames[0];
+        document.getElementById('value3').textContent = values[0];
+        document.getElementById('name4').textContent = customNames[1];
+        document.getElementById('value4').textContent = values[1];
 
     })
     .catch(error => {
         console.error('Chyba při načítání dat:', error);
     });
 
-fetch('/platne_vs_odevzdane_hlasy_data')
+fetch('/vydane_vs_ztracene_hlasy_data')
     .then(response => response.json())
     .then(data => {
         const values = data.data;
@@ -26,7 +26,7 @@ fetch('/platne_vs_odevzdane_hlasy_data')
         const colors = ['#FF6384', '#36A2EB']; // Barvy pro segmenty koláče
 
         // Nastavení dat pro graf
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx = document.getElementById('myChart2').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
@@ -40,7 +40,7 @@ fetch('/platne_vs_odevzdane_hlasy_data')
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Neplatné hlasy',
+                        text: 'Ztracené hlasy',
                         font: {
                             size: 18
                         }
